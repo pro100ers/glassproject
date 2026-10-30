@@ -216,10 +216,11 @@
 
   /* ---------- Слайдер сертификатов ---------- */
 
+  // Кнопки могут стоять вне слайдера (в шапке секции), связь через data-for = id ленты
   document.querySelectorAll('[data-slider]').forEach(function (slider) {
     var track = slider.querySelector('.slider__track');
-    var prev = slider.querySelector('.slider__prev');
-    var next = slider.querySelector('.slider__next');
+    var prev = track && document.querySelector('.slider__prev[data-for="' + track.id + '"]');
+    var next = track && document.querySelector('.slider__next[data-for="' + track.id + '"]');
     if (!track || !prev || !next) return;
     function step(dir) {
       var item = track.querySelector(':scope > *');
